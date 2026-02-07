@@ -15,9 +15,10 @@
         android:id="@+id/txtEmpty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="No data found"
+        android:text="@string/no_dat_found"
         android:textSize="16sp"
-        android:textColor="@android:color/darker_gray"
+        android:textStyle="bold"
+        android:textColor="@color/black"
         android:layout_gravity="center"
         android:visibility="gone"/>
 

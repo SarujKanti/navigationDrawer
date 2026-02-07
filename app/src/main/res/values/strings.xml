@@ -9,5 +9,6 @@
 
     <string name="menu_home">All Matches </string>
     <string name="menu_gallery">Saved Matches</string>
+    <string name="no_dat_found">No data found</string>
 
 </resources>
