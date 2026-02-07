@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/all_matches">
+
+    <fragment
+        android:id="@+id/all_matches"
+        android:name="com.skd.navigationdrawerview.ui.allMatches.AllMatchesFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_all_matches" />
+
+    <fragment
+        android:id="@+id/saves_matches"
+        android:name="com.skd.navigationdrawerview.ui.savedMatches.SavedMatchesFragment"
+        android:label="@string/menu_gallery"
+        tools:layout="@layout/fragment_all_matches" />
+
+</navigation>
