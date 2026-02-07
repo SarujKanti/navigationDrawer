@@ -17,7 +17,6 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical">
 
-        <!-- Text container -->
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="0dp"
@@ -31,7 +30,7 @@
                 android:text="Title"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:textColor="@android:color/black" />
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/txtSubName"
@@ -39,12 +38,11 @@
                 android:layout_height="wrap_content"
                 android:text="Subtitle"
                 android:textSize="13sp"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="@color/black"
                 android:layout_marginTop="4dp" />
 
         </LinearLayout>
 
-        <!-- Star icon on right -->
         <ImageView
             android:id="@+id/imgStar"
             android:layout_width="34dp"

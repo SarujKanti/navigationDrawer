@@ -15,7 +15,6 @@ import com.skd.navigationdrawerview.ui.allMatches.AllMatchesViewModel
 class SavedMatchesFragment : Fragment() {
 
     private val savedVM: SavedMatchesViewModel by activityViewModels()
-    private val allVM: AllMatchesViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,24 +29,30 @@ class SavedMatchesFragment : Fragment() {
 
         recycler.layoutManager = LinearLayoutManager(requireContext())
 
-        val adapter = SavedMatchesAdapter {
-            savedVM.removeMatch(it.id)
+        val adapter = SavedMatchesAdapter { item ->
+            savedVM.removeMatch(item.id)
         }
 
         recycler.adapter = adapter
 
         savedVM.savedMatches.observe(viewLifecycleOwner) { list ->
+
             adapter.submitList(list)
 
-            recycler.visibility =
-                if (list.isNullOrEmpty()) View.GONE else View.VISIBLE
-            emptyText.visibility =
-                if (list.isNullOrEmpty()) View.VISIBLE else View.GONE
+            if (list.isNullOrEmpty()) {
+                recycler.visibility = View.GONE
+                emptyText.visibility = View.VISIBLE
+            } else {
+                recycler.visibility = View.VISIBLE
+                emptyText.visibility = View.GONE
+            }
         }
+
 
         return view
     }
 }
+
 
 
 

@@ -2,7 +2,9 @@ package com.skd.navigationdrawerview.ui.allMatches
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.liveData
 import androidx.lifecycle.switchMap
@@ -17,16 +19,17 @@ class AllMatchesViewModel(application: Application) :
 
     private val repo = MatchRepository(application)
 
-    private val _loading = MediatorLiveData<Boolean>()
-    val loading = _loading
+    private val _loading = MutableLiveData<Boolean>()
+    val loading: LiveData<Boolean> = _loading
 
+    // API called ONCE
     val allMatches = liveData {
         _loading.postValue(true)
-        val apiMatches = repo.fetchMatches()
-        emit(apiMatches)
+        emit(repo.fetchMatches())
         _loading.postValue(false)
     }
 
+    // Room changes (REAL-TIME)
     val savedIds = repo.getSavedMatches()
         .map { list -> list.map { it.id }.toSet() }
         .asLiveData()
@@ -57,6 +60,9 @@ class AllMatchesViewModel(application: Application) :
         repo.saveMatch(venue)
     }
 }
+
+
+
 
 
 

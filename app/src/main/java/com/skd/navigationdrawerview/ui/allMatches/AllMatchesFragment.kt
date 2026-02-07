@@ -43,5 +43,6 @@ class AllMatchesFragment : Fragment() {
 
         return view
     }
+
 }
 
