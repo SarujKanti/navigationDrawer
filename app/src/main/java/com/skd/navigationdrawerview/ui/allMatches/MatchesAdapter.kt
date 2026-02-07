@@ -32,8 +32,8 @@ class MatchesAdapter(
 
     override fun onBindViewHolder(holder: VH, position: Int) {
         val item = getItem(position)
-        holder.name.text = item.name
-        holder.sub.text = item.location.country
+        holder.name.text = "Name : ${item.name}"
+        holder.sub.text = "Country : ${item.location.country}"
         holder.star.setImageResource(R.drawable.ic_star_border)
 
         holder.star.setOnClickListener {

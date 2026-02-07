@@ -11,4 +11,9 @@
     <string name="menu_gallery">Saved Matches</string>
     <string name="no_dat_found">No data found</string>
 
+    <string name="title">Title</string>
+    <string name="sub_title">Subtitle</string>
+    <string name="name">Name</string>
+    <string name="country">Country</string>
+
 </resources>

@@ -23,8 +23,8 @@ class SavedMatchesAdapter(
 
     override fun onBindViewHolder(holder: VH, position: Int) {
         val item = getItem(position)
-        holder.name.text = item.name
-        holder.country.text = item.country
+        holder.name.text = "Name : ${item.name}"
+        holder.country.text = "Country : ${item.country}"
         holder.star.setImageResource(R.drawable.ic_star_filled)
         holder.star.setOnClickListener { onStarClick(item) }
     }
