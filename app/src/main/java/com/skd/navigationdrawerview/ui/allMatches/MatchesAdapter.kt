@@ -10,9 +10,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.skd.navigationdrawerview.R
 import com.skd.navigationdrawerview.data.remote.Venue
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class MatchesAdapter(
     private val onStarClick: (Venue) -> Unit
@@ -32,9 +29,16 @@ class MatchesAdapter(
 
     override fun onBindViewHolder(holder: VH, position: Int) {
         val item = getItem(position)
+
         holder.name.text = "Name : ${item.name}"
         holder.sub.text = "Country : ${item.location.country}"
-        holder.star.setImageResource(R.drawable.ic_star_border)
+
+        holder.star.setImageResource(
+            if (item.isSaved)
+                R.drawable.ic_star_filled
+            else
+                R.drawable.ic_star_border
+        )
 
         holder.star.setOnClickListener {
             onStarClick(item)

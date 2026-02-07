@@ -5,7 +5,6 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.skd.navigationdrawerview.data.repository.MatchRepository
-import com.skd.navigationdrawerview.ui.allMatches.AllMatchesViewModel
 import kotlinx.coroutines.launch
 
 class SavedMatchesViewModel(application: Application) :

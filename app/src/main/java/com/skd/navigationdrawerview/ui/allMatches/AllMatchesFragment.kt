@@ -28,8 +28,12 @@ class AllMatchesFragment : Fragment() {
 
         recycler.layoutManager = LinearLayoutManager(requireContext())
 
-        adapter = MatchesAdapter {
-            viewModel.saveMatch(it)
+        adapter = MatchesAdapter { venue ->
+            if (venue.isSaved) {
+                viewModel.removeMatch(venue.id)
+            } else {
+                viewModel.saveMatch(venue)
+            }
         }
         recycler.adapter = adapter
 

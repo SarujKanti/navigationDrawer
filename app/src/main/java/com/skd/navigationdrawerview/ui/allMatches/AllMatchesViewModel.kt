@@ -7,7 +7,6 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.liveData
-import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
 import com.skd.navigationdrawerview.data.remote.Venue
 import com.skd.navigationdrawerview.data.repository.MatchRepository
@@ -18,18 +17,16 @@ class AllMatchesViewModel(application: Application) :
     AndroidViewModel(application) {
 
     private val repo = MatchRepository(application)
-
+    private var currentList: List<Venue> = emptyList()
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> = _loading
 
-    // API called ONCE
     val allMatches = liveData {
         _loading.postValue(true)
         emit(repo.fetchMatches())
         _loading.postValue(false)
     }
 
-    // Room changes (REAL-TIME)
     val savedIds = repo.getSavedMatches()
         .map { list -> list.map { it.id }.toSet() }
         .asLiveData()
@@ -41,12 +38,15 @@ class AllMatchesViewModel(application: Application) :
         var savedSet: Set<String> = emptySet()
 
         fun update() {
-            visibleMatches.value =
-                apiList.filterNot { savedSet.contains(it.id) }
+            val updated = currentList.map { venue ->
+                venue.copy(isSaved = savedSet.contains(venue.id))
+            }
+            visibleMatches.value = updated
         }
 
         visibleMatches.addSource(allMatches) {
             apiList = it
+            currentList = it
             update()
         }
 
@@ -59,6 +59,11 @@ class AllMatchesViewModel(application: Application) :
     fun saveMatch(venue: Venue) = viewModelScope.launch {
         repo.saveMatch(venue)
     }
+
+    fun removeMatch(id: String) = viewModelScope.launch {
+        repo.deleteMatch(id)
+    }
+
 }
 
 

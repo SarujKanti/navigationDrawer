@@ -10,7 +10,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.skd.navigationdrawerview.R
-import com.skd.navigationdrawerview.ui.allMatches.AllMatchesViewModel
 
 class SavedMatchesFragment : Fragment() {
 
