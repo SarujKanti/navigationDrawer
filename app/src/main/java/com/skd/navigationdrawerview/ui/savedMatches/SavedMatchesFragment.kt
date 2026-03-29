@@ -32,6 +32,7 @@ class SavedMatchesFragment : Fragment() {
             savedVM.removeMatch(item.id)
         }
 
+
         recycler.adapter = adapter
 
         savedVM.savedMatches.observe(viewLifecycleOwner) { list ->
